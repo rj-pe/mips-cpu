@@ -53,7 +53,8 @@ begin
                    ALUout_alu  =>ALU_Output(0),
                    carryout_alu=>c_out(0),		--c_out0 will become the carry-in of the next 1-bit ALU
                    carryin_alu => c_in(0),
-                   less_alu    => '0');       -- NEED TO REVISE
+                   --less_alu    => '0'
+						 less_alu    => set);       -- NEED TO REVISE
 
     alubits: for i in 1 to 31 generate
         ALU_i : ALU
@@ -69,12 +70,11 @@ begin
 
 
    Zero_alu32 <= '1' when ALU_Output = x"00000000" else '0';
-   set <= '0';    --slt                       -- NEED TO REVISE
+   set <= A_alu32(31) xor (not B_alu32(31)) xor c_in(31) ;    --slt                       -- NEED TO REVISE
    ALUout_alu32 <= ALU_Output;
 	 overflow_alu32 <= '0';                     -- NEED TO REVISE
 	
 end behavioural;
-
 
 
 
