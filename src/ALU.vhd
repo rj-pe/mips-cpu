@@ -26,12 +26,34 @@ begin
 
     -- code to produce two output signals ALUout_alu & carryout_alu
     -- based on four inpout signals ALUclt_alu, A_alu, B_alu, carryin_alu, and less_alu
-    ALUout_alu <= A_alu and B_alu;            -- just a placeholder
+    -- ALUout_alu <= A_alu and B_alu;            -- just a placeholder
+	 
+	 --assigning control signal to respective signals
+	 Ainvert <= ALUctl_alu(3);
+	 Binvert <= ALUctl_alu(2);
+	 Operation <= ALUctl_alu(1 downto 0);
 
-    -- 
-    -- assignment example in VHDL: "Operation <= ALUctl_alu(1 downto 0);"
-    -- simple if-else example in VHDL: "with Ainvert select a_in <= A_alu when '0',  not A_alu when others;"
+	 -- A inverting multiplexer
+    with Ainvert select a_in <= A_alu when '0',
+										  not A_alu when others;
+								
+	 -- B inverting multiplexer							
+	 with Binvert select b_in <= B_alu when '0',
+							           not B_alu when others;
+								
+	 
+	 -- final multiplexer 				
+	 with Operation select result <= a_in and b_in when "00", -- And operation
+												a_in or b_in when "01", -- Or operation
+												a_in xor b_in xor carryin_alu when "10", -- Add/Sub opertaion
+												less_alu when others; -- slt need to determine implementation
+									
+									
+									
+				
+	 Aluout_alu <= result;
+	 carryout_alu <= (a_in and b_in) or (b_in and carryin_alu) or (a_in and carryin_alu);
+	 
     
 end behavioural;
-
 
