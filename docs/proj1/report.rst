@@ -23,7 +23,7 @@ ALU_32.vhd was responsible for concatenating 32 1-bit ALUs to give us a
 32-bit ALU. Below is a diagram that shows how all the components are
 interconnected.   
 
-.. figure:: images/block_diagram.PNG
+.. figure:: ../images/block_diagram.PNG
    :align: center
 
    block diagram for microcomputer.vhd
