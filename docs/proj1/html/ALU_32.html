@@ -89,7 +89,9 @@ body .il { color: #666666 } /* Literal.Number.Integer.Long */
 <span class="c1">-- EEC 483 Project</span>
 <span class="c1">-- Implementation of MIPS</span>
 <span class="c1">-- File name   : ALU_32.vhd</span>
-<span class="c1">--</span>
+<span class="c1">-- Description : Connects 32 1-bit ALUs in parallel. Sets the carryin bit of </span>
+<span class="c1">--               ALU_0 as needed. Sets two status bits: zero and overflow.</span>
+<span class="c1">--               Routes slt signal to zeroth 1-bit ALU.</span>
 <span class="c1">-------------------------------------------------------------------------------</span>
 <span class="k">library</span> <span class="nn">ieee</span><span class="p">;</span>
     <span class="k">use</span> <span class="nn">ieee.std_logic_1164.</span><span class="k">all</span><span class="p">;</span>

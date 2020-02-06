@@ -3,7 +3,8 @@
 -- EEC 483 Project
 -- Implementation of MIPS
 -- File name   : mips.vhd
---
+-- Description : Instantiates program and data memory, a 32-bit ALU. Feeds the
+--               ALU with two 32-bit operands, and a control signal.
 ------------------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
