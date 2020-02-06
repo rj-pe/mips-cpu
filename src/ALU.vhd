@@ -3,7 +3,10 @@
 -- EEC 483 Project
 -- Implementation of MIPS
 -- File name   : ALU.vhd
---
+-- Description : A 1-bit ALU. Performs 1-bit and, or, addition, and 
+--               subtraction. Provides a carry-out bit if the operation
+--               results in a two-bit quantity. Uses a four-bit control signal
+--               to select desired operation. 
 --------------------------------------------------------------------------------
 library ieee;
     use ieee.std_logic_1164.all;

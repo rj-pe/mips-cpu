@@ -3,7 +3,9 @@
 -- EEC 483 Project
 -- Implementation of MIPS
 -- File name   : ALU_32.vhd
---
+-- Description : Connects 32 1-bit ALUs in parallel. Sets the carryin bit of 
+--               ALU_0 as needed. Sets two status bits: zero and overflow.
+--               Routes slt signal to zeroth 1-bit ALU.
 -------------------------------------------------------------------------------
 library ieee;
     use ieee.std_logic_1164.all;
