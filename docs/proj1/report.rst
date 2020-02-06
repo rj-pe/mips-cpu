@@ -5,14 +5,14 @@ Project 1 Report
 Part 1: Overall Design
 ----------------------
 
-   Describe the overall design (mips, inst_memory, & data_memory) with input
-   & output ports interconnected with a diagram. (Refer to ``microcomputer.vhd``)
+   Describe the overall design (mips, inst_memory, & data_memory) with input & 
+   output ports interconnected with a diagram. (Refer to ``microcomputer.vhd``)
 
 Response:
 ~~~~~~~~~
-``microcomputer.vhd`` implements three smaller components within itself. The first
-component is the data_memory component, this component is responsible for
-storing all the data in different registers. The second component is
+``microcomputer.vhd`` implements three smaller components within itself. The
+first component is the data_memory component, this component is responsible
+for storing all the data in different registers. The second component is
 inst_memory, this component is responsible for storing the program that CPU
 is going to execute. The final component is the CPU which currently the CPU
 only has a 32-bit ALU inside but more will be added as the course progresses.
@@ -42,7 +42,7 @@ Response:
 The 50MHz clock is supplied to the test_mips.vhd file as an input.
 There are three different clock options that have been provided for us.
 The first option is to use key(0) as the clock signal meaning when you
-press the button the clock progesses. The second option is to slow down
+press the button the clock progresses. The second option is to slow down
 the 50MHz clock signal down to a 10MHz clock signal so the CPU would
 run a little slower. The final option is to use the standard 50MHz clock
 that is provided with the DE-10 lite board. For project 1 we are utilizing
@@ -64,7 +64,17 @@ Part 3: ALU Design
 
 Response:
 ~~~~~~~~~
- This is some filler text.
+
+The arithmetic logic unit (ALU) performs and, or, add (``add``), subtract 
+(``sub``), and set less than (``slt``) operations on 32-bit words. The ALU
+can parse MIPS formatted instructions. The ALU has three inputs: two 32-bit
+operands, and a 4-bit control signal. The ALU has three outputs: one 32-bit
+result, a one-bit overflow indicator, and a one-bit zero indicator. The
+overflow bit is set when an arithmetic operation returns a result which cannot
+be expressed with 32-bits. The zero bit is set when the result of an operation
+is ``0x00000000``.
+
+The 32-bit ALU is constructed by wiring 32 1-bit ALU's in parallel. 
 
 -----
 
@@ -93,9 +103,9 @@ Response:
 
 -----
 
---------------
-Part 6: Resuls
---------------
+---------------
+Part 6: Results
+---------------
 
   Explain if your program produces correct ALU output, include a summary of
   what occurs when ``A`` and ``B`` are swapped.
