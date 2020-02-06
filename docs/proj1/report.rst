@@ -25,7 +25,8 @@ interconnected.
 
 .. raw:: html
    
-   <img src="../images/block_diagram.PNG" alt="" style="width: 100%;"/><figcaption>block diagram for microcomputer.vhd</figcaption>
+   <img src="../images/block_diagram.PNG" alt="" style="width: 100%;"/>
+   <figcaption>block diagram for microcomputer.vhd</figcaption>
 
 -----
 
@@ -66,14 +67,37 @@ Response:
 
 The arithmetic logic unit (ALU) performs and, or, add (``add``), subtract 
 (``sub``), and set less than (``slt``) operations on 32-bit words. The ALU
-can parse MIPS formatted instructions. The ALU has three inputs: two 32-bit
-operands, and a 4-bit control signal. The ALU has three outputs: one 32-bit
-result, a one-bit overflow indicator, and a one-bit zero indicator. The
-overflow bit is set when an arithmetic operation returns a result which cannot
-be expressed with 32-bits. The zero bit is set when the result of an operation
-is ``0x00000000``.
+can parse MIPS formatted instructions.
 
-The 32-bit ALU is constructed by wiring 32 1-bit ALU's in parallel. 
+The ALU has three inputs: two 32-bit operands, and a 4-bit control signal. All
+four bits of the control signal are fed to each of the 32 1-bit ALU's. A single
+bit of each operand is fed to each of the 32 1-bit ALU's. 
+
+The zeroth 1-bit ALU requires two unique signal logic statements.
+
+The ALU has three outputs: one 32-bit result, a one-bit overflow indicator, and
+a one-bit zero indicator. The overflow bit is set when an arithmetic operation
+returns a result which cannot be expressed with 32-bits. The zero bit is set
+when the result of an operation is ``0x00000000``. The 32-bit result is
+collected bit-by-bit from each of the 32 1-bit ALU's.
+
+The 32-bit ALU is constructed by wiring 32 1-bit ALU's in parallel. The and /
+or operations are implemented using the corresponding logic gates. An adder is
+used to implement the other three operations. In order to select which output
+to send as the result, the 1-bit ALU uses a four-to-one multiplexer. 
+
+The sum of the 1-bit adder is implemented using a three input exclusive-or
+gate. The inputs are the two operands and the carry-in bit. The carry-out bit
+is set when at least two of the three input bits (two operands & carry-in)
+are one.
+
+The adder can also subtract using two's complement. We obtain the two's
+complement representation of the negative of the second operand by negating 
+all the bits and setting carry-in bit of the zeroth 1-bit ALU. In order to
+tell the 1-bit ALU's that the second operand should be negated we include a
+``b_invert`` signal as a select line to a two-to-one multiplexer connected to
+the second input of the adder.
+
 
 -----
 
