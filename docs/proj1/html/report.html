@@ -5,9 +5,7 @@
 </blockquote>
 <h3 id="response">Response:</h3>
 <p><code>microcomputer.vhd</code> implements three smaller components within itself. The first component is the data_memory component, this component is responsible for storing all the data in different registers. The second component is inst_memory, this component is responsible for storing the program that CPU is going to execute. The final component is the CPU which currently the CPU only has a 32-bit ALU inside but more will be added as the course progresses. The majority of the work for project 1 was done inside of the CPU we were responsible for creating a 1-bit ALU that implements the following operations: and, or, add, sub, slt. Once the 1-bit ALU was created the file ALU_32.vhd was responsible for concatenating 32 1-bit ALUs to give us a 32-bit ALU. Below is a diagram that shows how all the components are interconnected.</p>
-<figure>
-<img src="../images/block_diagram.PNG" class="align-center" alt="" /><figcaption>block diagram for microcomputer.vhd</figcaption>
-</figure>
+<img src="../images/block_diagram.PNG" alt="" style="width: 100%;"/><figcaption>block diagram for microcomputer.vhd</figcaption>
 <hr />
 <h2 id="part-2-clock-signal">Part 2: Clock Signal</h2>
 <blockquote>
@@ -30,6 +28,8 @@
 <p>Explain your implementation of <code>slt</code> instruction.</p>
 </blockquote>
 <h3 id="response-3">Response:</h3>
+<p>The <code>slt</code> instruction is a simple instruction to check if the A input to the ALU is smaller than the B input. To check if A is less than B we must take the two's complement of B then do a subtraction instruction. Once that operation has been completed we can check the most significant bit or in this case the sign bit. If the sign bit is '1' then we know that the result of the subtraction operation was a negative number which tells us that A is less than B. Our current implementation of slt is to perform the subtraction operation on the 31<sup>st</sup> bits of the A input, B input, and the Carry in. If this operation results in a '1' then we know that A is less than B, but if this operation results in a '0' then we know that A is greater than B.</p>
+<p>There is another implementation that would involve adding an additional output to every 1-bit ALU. If we added an additional output this would allow us to grab the most significant bit directly from the 31st 1-bit ALU rather than completing a second operation in <code>ALU_32.vhd</code>. We decided against this route because that would involve heavily modifying <code>ALU_32.vhd</code> and we were unaware if we were allowed make these changes.</p>
 <hr />
 <h2 id="part-5-alu-control-circuit">Part 5: ALU Control Circuit</h2>
 <blockquote>

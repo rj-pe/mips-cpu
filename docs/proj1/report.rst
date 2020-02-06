@@ -23,10 +23,9 @@ ALU_32.vhd was responsible for concatenating 32 1-bit ALUs to give us a
 32-bit ALU. Below is a diagram that shows how all the components are
 interconnected.   
 
-.. figure:: ../images/block_diagram.PNG
-   :align: center
-
-   block diagram for microcomputer.vhd
+.. raw:: html
+   
+   <img src="../images/block_diagram.PNG" alt="" style="width: 100%;"/><figcaption>block diagram for microcomputer.vhd</figcaption>
 
 -----
 
@@ -85,7 +84,23 @@ Part 4: SLT Implementation
 
 Response:
 ~~~~~~~~~
+The ``slt`` instruction is a simple instruction to check if the A input to the ALU
+is smaller than the B input. To check if A is less than B we must take the two's 
+complement  of B then do a subtraction instruction. Once that operation has been 
+completed we can check the most significant bit or in this case the sign bit. 
+If the sign bit is '1' then we know that the result of the subtraction operation
+was a negative number which tells us that A is less than B. Our current implementation
+of slt is to perform the subtraction operation on the 31\ :sup:`st` bits of the 
+A input, B input, and the Carry in. If this operation results in a '1' then 
+we know that A is less than B, but if this operation results in a '0' then we 
+know that A is greater than B. 
 
+There is another implementation that would involve adding an additional output
+to every 1-bit ALU. If we added an additional output this would allow us to grab 
+the most significant bit directly from the 31st 1-bit ALU rather than completing a 
+second operation in ``ALU_32.vhd``. We decided against this route because that would
+involve heavily modifying ``ALU_32.vhd`` and we were unaware if we were allowed make 
+these changes. 
 
 ------
 
