@@ -5,12 +5,12 @@ Project 1 Report
 Part 1: Overall Design
 ----------------------
 
-
    Describe the overall design (mips, inst_memory, & data_memory) with input
    & output ports interconnected with a diagram. (Refer to ``microcomputer.vhd``)
 
-
-microcomputer.vhd implements three smaller components within itself. The first
+Response:
+~~~~~~~~~
+``microcomputer.vhd`` implements three smaller components within itself. The first
 component is the data_memory component, this component is responsible for
 storing all the data in different registers. The second component is
 inst_memory, this component is responsible for storing the program that CPU
@@ -28,15 +28,17 @@ interconnected.
 
    block diagram for microcomputer.vhd
 
+-----
+
 --------------------
 Part 2: Clock Signal
 --------------------
 
-
   Explain how the clock signal is supplied in the design and how the clock
   proceeds. (Refer to ``test_mips.vhd``)
 
-
+Response:
+~~~~~~~~~
 The 50MHz clock is supplied to the test_mips.vhd file as an input.
 There are three different clock options that have been provided for us.
 The first option is to use key(0) as the clock signal meaning when you
@@ -52,17 +54,38 @@ The VHDL code checks to make sure both key(0) is pressed and the rising
 edge of the clock has occurred if both of those are true it increments the
 program counter by 4 bytes.
 
+-----
+
+------------------
+Part 3: ALU Design
+------------------
+
+  Explain your ALU design. (Refer to ``alu.vhd``)
+
+Response:
+~~~~~~~~~
+ This is some filler text.
+
+-----
 
 --------------------------
 Part 4: SLT Implementation
 --------------------------
   Explain your implementation of ``slt`` instruction.
 
-Question 3
-```````````
+Response:
+~~~~~~~~~
 
-Explain your ALU design. (Refer to ``alu.vhd``)
 
+------
+
+---------------------------
+Part 5: ALU Control Circuit
+---------------------------
+
+  Explain your ALU control circuit design along with the Boolean expression of
+  each of the four ``ALUctl`` signals, as well as the corresponding section of
+  VHDL code (Refer to ``mips.vhd``)
 
 Response:
 ~~~~~~~~~
@@ -70,23 +93,12 @@ Response:
 
 -----
 
-Question 4
-```````````
+--------------
+Part 6: Resuls
+--------------
 
-
-
-Response:
-~~~~~~~~~
-
-
------
-
-Question 5
-```````````
-
-Explain your ALU control circuit design along with the Boolean expression of
-each of the four ``ALUctl`` signals, as well as the corresponding section of
-VHDL code (Refer to ``mips.vhd``)
+  Explain if your program produces correct ALU output, include a summary of
+  what occurs when ``A`` and ``B`` are swapped.
 
 Response:
 ~~~~~~~~~
@@ -94,15 +106,14 @@ Response:
 
 -----
 
-Question 6
-```````````
+Main_
+~~~~~~~
+.. _Main: main.html
 
-Explain if your program produces correct ALU output, include a summary of
-what occurs when ``A`` and ``B`` are swapped.
+Source_
+~~~~~~~
+.. _Source: source.html
 
-Response:
-~~~~~~~~~
-
-
------
-
+Demonstration_
+~~~~~~~~~~~~~~
+.. _Demonstration: demonstration.html
