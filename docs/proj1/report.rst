@@ -1,3 +1,4 @@
+
 Project 1 Report
 ````````````````
 ----------------------
@@ -43,4 +44,26 @@ program counter by 4 bytes.
 --------------------------
 Part 4: SLT Implementation
 --------------------------
+
+
+-----
+
+5. Explain your ALU control circuit design along with the Boolean expression of
+   each of the four ``ALUctl`` signals, as well as the corresponding section of
+   VHDL code (Refer to ``mips.vhd``)
+
+Response:
+~~~~~~~~~
+
+
+-----
+
+6. Explain if your program produces correct ALU output, include a summary of
+   what occurs when ``A`` and ``B`` are swapped.
+
+Response:
+~~~~~~~~~
+
+
+-----
 
