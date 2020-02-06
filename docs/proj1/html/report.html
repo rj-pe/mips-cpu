@@ -41,6 +41,46 @@
 <p>Explain your ALU control circuit design along with the Boolean expression of each of the four <code>ALUctl</code> signals, as well as the corresponding section of VHDL code (Refer to <code>mips.vhd</code>)</p>
 </blockquote>
 <h3 id="response-4">Response:</h3>
+<h4 id="control-in-mips.vhd">Control in <code>mips.vhd</code></h4>
+<p>The 6-bit opcode is extracted from the lower bits of MIPS instruction. To construct the <code>ALUctl</code> signal, our implementation employs a six to four look-up table (LUT).</p>
+<p>The LUT generates a 4-bit control signal (<code>c3 c2 c1 c0</code>) based on the MIPS opcode. Where <code>c3</code> (or <code>a_invert</code>) controls whether or not to invert the first operand. Note that we are not currently using this signal. Similarly, <code>c2</code> (or <code>b_invert</code>) controls whether to invert the second operand. This signal is asserted for both the <code>sub</code> and <code>slt</code> instructions. In order to perform subtraction using an adder the second operand is inverted, and the carry-in bit of the zeroth 1-bit ALU is asserted. <code>c1</code> &amp; <code>c0</code> are used as the selection lines for the final four-to-one multiplexer in the 1-bit ALU. See table below for signal assignments.</p>
+<h4 id="control-in-alu_32.vhd">Control in <code>ALU_32.vhd</code></h4>
+<p>Controlling the carry-in bit: When the operation calls for subtraction of the two operands the carry-in bit of the zeroth 1-bit ALU is set.</p>
+<p>Controlling the <code>less_alu</code> signal: The zeroth 1-bit ALU's <code>less_alu</code> input is a three gate xor. The three inputs to the gate are: the sign bits of both operands and the thirty-first 1-bit ALU's carry-in.</p>
+<h4 id="control-in-alu.vhd">Control in <code>ALU.vhd</code></h4>
+<p>The four input lines for this multiplexer are: and, or, adder, &amp; less.</p>
+<table>
+<caption>4-1 Multiplexer</caption>
+<thead>
+<tr class="header">
+<th><code>c1</code></th>
+<th><code>c0</code></th>
+<th>ALU function description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>and gate output</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>or gate output</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>adder output</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>less signal</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="part-6-results">Part 6: Results</h2>
 <blockquote>

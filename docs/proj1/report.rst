@@ -139,6 +139,46 @@ Part 5: ALU Control Circuit
 Response:
 ~~~~~~~~~
 
+Control in ``mips.vhd``
+++++++++++++++++++++++++
+
+The 6-bit opcode is extracted from the lower bits of MIPS instruction. To
+construct the ``ALUctl`` signal, our implementation employs a six to four 
+look-up table (LUT).
+
+The LUT generates a 4-bit control signal (``c3 c2 c1 c0``) based on the MIPS
+opcode. Where ``c3`` (or ``a_invert``) controls whether or not to invert the
+first operand. Note that we are not currently using this signal. Similarly, 
+``c2`` (or ``b_invert``) controls whether to invert the second operand. This
+signal is asserted for both the ``sub`` and ``slt`` instructions. In order to
+perform subtraction using an adder the second operand is inverted, and the
+carry-in bit of the zeroth 1-bit ALU is asserted. ``c1`` & ``c0`` are used as
+the selection lines for the final four-to-one multiplexer in the 1-bit
+ALU. See table below for signal assignments.
+
+
+Control in ``ALU_32.vhd``
+++++++++++++++++++++++++++
+
+Controlling the carry-in bit: When the operation calls for subtraction of the
+two operands the carry-in bit of the zeroth 1-bit ALU is set.
+
+Controlling the ``less_alu`` signal: The zeroth 1-bit ALU's ``less_alu`` input
+is a three gate xor. The three inputs to the gate are: the sign bits of both
+operands and the thirty-first 1-bit ALU's carry-in.
+
+Control in ``ALU.vhd``
++++++++++++++++++++++++++
+The four input lines for this multiplexer are: and, or, adder, & less.
+
+.. csv-table:: 4-1 Multiplexer
+  :header: "``c1``","``c0``", "ALU function description"
+
+  "0","0","and gate output"
+  "0","1","or gate output"
+  "1","0","adder output"
+  "1","1","less signal"
+
 
 -----
 
