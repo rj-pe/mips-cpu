@@ -84,13 +84,13 @@ body .il { color: #666666 } /* Literal.Number.Integer.Long */
 <body>
 <h2></h2>
 
-<div class="highlight"><pre><span></span><span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<div class="highlight"><pre><span></span><span class="c1">-------------------------------------------------------------------------------</span>
 <span class="c1">--</span>
 <span class="c1">-- EEC 483 Project</span>
 <span class="c1">-- Implementation of MIPS</span>
 <span class="c1">-- File name   : ALU_32.vhd</span>
 <span class="c1">--</span>
-<span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<span class="c1">-------------------------------------------------------------------------------</span>
 <span class="k">library</span> <span class="nn">ieee</span><span class="p">;</span>
     <span class="k">use</span> <span class="nn">ieee.std_logic_1164.</span><span class="k">all</span><span class="p">;</span>
     <span class="k">use</span> <span class="nn">ieee.std_logic_arith.</span><span class="k">all</span><span class="p">;</span>
@@ -134,7 +134,8 @@ body .il { color: #666666 } /* Literal.Number.Integer.Long */
                    <span class="n">B_alu</span>       <span class="o">=&gt;</span> <span class="n">B_alu32</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
                    <span class="n">ALUctl_alu</span>  <span class="o">=&gt;</span> <span class="n">ALUctl_alu32</span><span class="p">,</span>
                    <span class="n">ALUout_alu</span>  <span class="o">=&gt;</span><span class="n">ALU_Output</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-                   <span class="n">carryout_alu</span><span class="o">=&gt;</span><span class="n">c_out</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>    <span class="c1">--c_out0 will become the carry-in of the next 1-bit ALU</span>
+                   <span class="c1">--c_out0 will become the carry-in of the next 1-bit ALU</span>
+                   <span class="n">carryout_alu</span><span class="o">=&gt;</span><span class="n">c_out</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
                    <span class="n">carryin_alu</span> <span class="o">=&gt;</span> <span class="n">c_in</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
                    <span class="n">less_alu</span>    <span class="o">=&gt;</span> <span class="n">set</span><span class="p">);</span>       <span class="c1">-- NEED TO REVISE</span>
 
@@ -144,7 +145,8 @@ body .il { color: #666666 } /* Literal.Number.Integer.Long */
                    <span class="n">B_alu</span>        <span class="o">=&gt;</span> <span class="n">B_alu32</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
                    <span class="n">ALUctl_alu</span>   <span class="o">=&gt;</span> <span class="n">ALUctl_alu32</span><span class="p">,</span>
                    <span class="n">ALUout_alu</span>   <span class="o">=&gt;</span> <span class="n">ALU_Output</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
-                   <span class="n">carryout_alu</span> <span class="o">=&gt;</span> <span class="n">c_out</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>    <span class="c1">--c_outi will become the carry-in of the next 1-bit ALU </span>
+                   <span class="c1">--c_outi will become the carry-in of the next 1-bit ALU </span>
+                   <span class="n">carryout_alu</span> <span class="o">=&gt;</span> <span class="n">c_out</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> 
                    <span class="n">carryin_alu</span>  <span class="o">=&gt;</span> <span class="n">c_in</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
                    <span class="n">less_alu</span>     <span class="o">=&gt;</span> <span class="sc">&#39;0&#39;</span><span class="p">);</span>      <span class="c1">-- NEED TO REVISE </span>
         <span class="n">c_in</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">c_out</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>

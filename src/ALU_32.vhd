@@ -1,10 +1,10 @@
-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 --
 -- EEC 483 Project
 -- Implementation of MIPS
 -- File name   : ALU_32.vhd
 --
-------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 library ieee;
     use ieee.std_logic_1164.all;
     use ieee.std_logic_arith.all;
@@ -48,7 +48,8 @@ begin
                    B_alu       => B_alu32(0),
                    ALUctl_alu  => ALUctl_alu32,
                    ALUout_alu  =>ALU_Output(0),
-                   carryout_alu=>c_out(0),    --c_out0 will become the carry-in of the next 1-bit ALU
+                   --c_out0 will become the carry-in of the next 1-bit ALU
+                   carryout_alu=>c_out(0),
                    carryin_alu => c_in(0),
                    less_alu    => set);       -- NEED TO REVISE
 
@@ -58,7 +59,8 @@ begin
                    B_alu        => B_alu32(i),
                    ALUctl_alu   => ALUctl_alu32,
                    ALUout_alu   => ALU_Output(i),
-                   carryout_alu => c_out(i),    --c_outi will become the carry-in of the next 1-bit ALU 
+                   --c_outi will become the carry-in of the next 1-bit ALU 
+                   carryout_alu => c_out(i), 
                    carryin_alu  => c_in(i),
                    less_alu     => '0');      -- NEED TO REVISE 
         c_in(i) <= c_out(i-1);
