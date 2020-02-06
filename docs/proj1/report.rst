@@ -81,10 +81,11 @@ returns a result which cannot be expressed with 32-bits. The zero bit is set
 when the result of an operation is ``0x00000000``. The 32-bit result is
 collected bit-by-bit from each of the 32 1-bit ALU's.
 
-The 32-bit ALU is constructed by wiring 32 1-bit ALU's in parallel. The and /
-or operations are implemented using the corresponding logic gates. An adder is
-used to implement the other three operations. In order to select which output
-to send as the result, the 1-bit ALU uses a four-to-one multiplexer. 
+The 32-bit ALU is constructed by wiring 32 1-bit ALU's in parallel (inputs).
+The carry-in bit is taken from the carry-out of the previous 1-bit ALU.
+The and / or operations are implemented using the corresponding logic gates. 
+An adder is used to implement the other three operations. In order to select
+which output to send as the result, the 1-bit ALU uses a four-to-one multiplexer. 
 
 The sum of the 1-bit adder is implemented using a three input exclusive-or
 gate. The inputs are the two operands and the carry-in bit. The carry-out bit
