@@ -47,6 +47,107 @@
 <p>Explain if your program produces correct ALU output, include a summary of what occurs when <code>A</code> and <code>B</code> are swapped.</p>
 </blockquote>
 <h3 id="response-5">Response:</h3>
+<p>When loaded with our program the board's hex display can show either the address of the instruction being executed by the ALU, or the ALU result in hexadecimal. The hex display can show 6 digits, where each digit represents 4-bits. In our implementation the lower 24 bits are displayed on the hex display and the remaining 8 bits are represented on the row of LEDs.</p>
+<p>The two hard-coded operands are <code>A=0x000A 0FF0</code> and <code>B=0x0000 1010</code>. The order of instructions fed to the ALU are <code>add</code>, <code>sub</code>, <code>and</code>, <code>or</code>, and <code>slt</code>. The following table summarizes the results obtained with our implementation.</p>
+<table>
+<caption>Order of operands A &amp; B as given</caption>
+<thead>
+<tr class="header">
+<th>Instr.</th>
+<th>|</th>
+<th>Result displayed</th>
+<th>|</th>
+<th>Addr. displayed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A + B</td>
+<td>|</td>
+<td>0A2 000</td>
+<td>|</td>
+<td>000 000</td>
+</tr>
+<tr class="even">
+<td>A - B</td>
+<td>|</td>
+<td>09F FE0</td>
+<td>|</td>
+<td>000 004</td>
+</tr>
+<tr class="odd">
+<td>A &amp; B</td>
+<td>|</td>
+<td>000 010</td>
+<td>|</td>
+<td>000 008</td>
+</tr>
+<tr class="even">
+<td>A | B</td>
+<td>|</td>
+<td>0A1 FF0</td>
+<td>|</td>
+<td>000 00C</td>
+</tr>
+<tr class="odd">
+<td>A &lt;? B</td>
+<td>|</td>
+<td>000 000</td>
+<td>|</td>
+<td>000 010</td>
+</tr>
+</tbody>
+</table>
+<p>When the order of the operands <code>A</code> and <code>B</code> is reversed our implementation displays the following hex digits on the display. Note that the <code>slt</code> (last row) returns 1 in this case because <code>B</code> is a smaller number than <code>A</code>.</p>
+<table>
+<caption>Order of operands B &amp; A reversed</caption>
+<thead>
+<tr class="header">
+<th>Instr.</th>
+<th>|</th>
+<th>Hex displayed</th>
+<th>|</th>
+<th>Addr. displayed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B + A</td>
+<td>|</td>
+<td>0A2 000</td>
+<td>|</td>
+<td>000 000</td>
+</tr>
+<tr class="even">
+<td>B - A</td>
+<td>|</td>
+<td>F60 020</td>
+<td>|</td>
+<td>000 004</td>
+</tr>
+<tr class="odd">
+<td>B &amp; A</td>
+<td>|</td>
+<td>000 010</td>
+<td>|</td>
+<td>000 008</td>
+</tr>
+<tr class="even">
+<td>B | A</td>
+<td>|</td>
+<td>0A1 FF0</td>
+<td>|</td>
+<td>000 00C</td>
+</tr>
+<tr class="odd">
+<td>B &lt;? A</td>
+<td>|</td>
+<td>000 0001</td>
+<td>|</td>
+<td>000 010</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3 id="main"><a href="main.html">Main</a></h3>
 <h3 id="source"><a href="source.html">Source</a></h3>

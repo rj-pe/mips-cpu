@@ -152,6 +152,41 @@ Part 6: Results
 Response:
 ~~~~~~~~~
 
+When loaded with our program the board's hex display can show either the address
+of the instruction being executed by the ALU, or the ALU result in hexadecimal.
+The hex display can show 6 digits, where each digit represents 4-bits. In our
+implementation the lower 24 bits are displayed on the hex display and the
+remaining 8 bits are represented on the row of LEDs.
+
+The two hard-coded operands are ``A=0x000A 0FF0`` and ``B=0x0000 1010``. The 
+order of instructions fed to the ALU are  ``add``, ``sub``, ``and``, ``or``,
+and ``slt``. The following table summarizes the results obtained with our
+implementation.
+
+
+
+.. csv-table:: Order of operands A & B as given
+  :header: "Instr.", "|","Result displayed","|", "Addr. displayed"
+
+  "A + B", "|", "0A2 000","|","000 000"
+  "A - B", "|", "09F FE0","|","000 004"
+  "A & B", "|", "000 010","|","000 008"
+  "A | B", "|", "0A1 FF0","|","000 00C"
+  "A <? B","|", "000 000","|","000 010"
+
+
+When the order of the operands ``A`` and ``B`` is reversed our implementation
+displays the following hex digits on the display. Note that the ``slt`` (last
+row) returns 1 in this case because ``B`` is a smaller number than ``A``.
+
+.. csv-table:: Order of operands B & A reversed
+  :header: "Instr.", "|","Hex displayed", "|","Addr. displayed"
+
+  "B + A", "|", "0A2 000","|","000 000"
+  "B - A", "|", "F60 020","|","000 004"
+  "B & A", "|", "000 010","|","000 008"
+  "B | A", "|", "0A1 FF0","|","000 00C"
+  "B <? A","|", "000 0001","|","000 010"
 
 -----
 
