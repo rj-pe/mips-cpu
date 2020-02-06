@@ -11,11 +11,8 @@ all: $(target_html)
 .PHONY: all
 
 # build html files with pandoc
-%.html: $(target_html:.html=.rst)
-	pandoc -f rst -t html $< -o html/$@
-
-# does nothing but needed nonetheless
-#$(target_html:.html=):
+%.html:
+	pandoc -f rst -t html $(basename $@).rst -o html/$@
 
 
 clean:
