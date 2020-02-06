@@ -35,7 +35,6 @@ architecture rtl of mips is
    signal Zero    : std_logic;       -- 1 bit signals fOR ALU arithmetic operations
 
 ------ Project 1 Signals (your code) ------
---  signal ?????
   signal opcode: std_logic_vector(5 downto 0);
 
 ------ Component Declarations ------
@@ -61,9 +60,6 @@ begin
                  Zero_alu32    =>Zero);
 
 ------ Project 1 Signal Mapping (your code) ------      
-  --ALUctl <= "0010";
-  
-  --Matt added everything below could be wrong.
   opcode <= instruction_mips(5 downto 0);
   
   with opcode select ALUctl <= "0000" when "100100",
@@ -104,5 +100,3 @@ begin
 
 
 end architecture;
-
-
