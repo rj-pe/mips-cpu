@@ -10,13 +10,13 @@ Project One
 
 Report_
 ~~~~~~~
-.. _Report: html/report.html
+.. _Report: report.html
 
 
 Source_
 ~~~~~~~
-.. _Source: html/source.hmtl
+.. _Source: source.html
 
 Demonstration_
 ~~~~~~~~~~~~~~
-.. _Demonstration: html/demo.html
+.. _Demonstration: demo.html
