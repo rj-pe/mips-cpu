@@ -37,18 +37,43 @@ end entity;
 
 architecture rtl of inst_memory_128B is
 
-  type rom_type is array (0 to 31) of std_logic_vector(31 downto 0);
-  constant ROM : rom_type := (
-			  0 => x"00430820", -- ADDR 0  -- [add $1 $2 $3  => R(op:0(add) rs:2(2) rt:3(3) rd:1(1) sh:0 func:32)] 
-				1 => x"00e83022", -- ADDR 4  -- [sub $6 $7 $8  => R(op:0(sub) rs:7(7) rt:8(8) rd:6(6) sh:0 func:34)] 
-				2 => x"018d5824", -- ADDR 8  -- [and $11 $12 $13  => R(op:0(and) rs:12(12) rt:13(13) rd:11(11) sh:0 func:36)] 
-				3 => x"02328025", -- ADDR 12 (or 0xC)  -- [or $16 $17 $18  => R(op:0(or) rs:17(17) rt:18(18) rd:16(16) sh:0 func:37)] 
-				4 => x"033ac02a", -- ADDR 16 (or 0x10) -- [slt $24 $25 $26  => R(op:0(slt) rs:25(25) rt:26(26) rd:24(24) sh:0 func:42)] 
-				others => x"00000000"); 
-                              
-   begin
+    type rom_type is array (0 to 31) of std_logic_vector(31 downto 0);
+    constant ROM : rom_type := 
+        (0 => x"00000020", -- ADDR 0 -- add $0, $0, $0 (dummy)
+				
+        -- two operands
+        1 => x"8ca20000",	-- ADDR 4 --	[lw	$2 	0($5)]		
+        2 => x"8ca30004", -- ADDR 8 --	[lw	$3 	4($5)]			
+
+        -- set of ALU operations  
+        3 => x"00435020",	-- ADDR c --	[add	$10 	$2 	$3]
+        4 => x"00435822",	-- ADDR 10 --	[sub	$11 	$2 	$3]
+        5 => x"00626022",	-- ADDR 14 --	[sub	$12 	$3 	$2]
+        6 => x"0062682a",	-- ADDR 18 --	[slt	$13 	$3 	$2]
+        7 => x"0043702a",	-- ADDR 1c --	[slt	$14 	$2 	$3]
+        
+        -- save results to data memory [88-a0]        
+        8 => x"acca0000",	-- ADDR 20 --	[sw	$10 	0($6)]			
+        9 => x"accb0004",	-- ADDR 24 --	[sw	$11 	4($6)]			
+        10 => x"accc0008",	-- ADDR 28 --	[sw	$12 	8($6)]			
+        11 => x"accd000c",	-- ADDR 2c --	[sw	$13 	12($6)]			
+        12 => x"acce0010",	-- ADDR 30 --	[sw	$14 	16($6)]			
+
+        -- confirm the operations        
+        13 => x"8cc10000",	-- ADDR 34 --	[lw	$1 	0($6)]			
+        14 => x"8cc10004",	-- ADDR 38 --	[lw	$1 	4($6)]			
+        15 => x"8cc10008",	-- ADDR 3c --	[lw	$1 	8($6)]
+        16 => x"8cc1000c",	-- ADDR 40 --	[lw	$1 	12($6)]
+        17 => x"8cc10010",	-- ADDR 44 --	[lw	$1 	16($6)]
+        
+        others => x"00000000"); 
+		  
+begin
 	
     -- Asyncronous Read of ROM
+	 process (pc_im)
+	 begin
     instruction_im <= ROM(to_integer(unsigned(pc_im))/4);
-	 
+	 end process;
+
 end architecture;

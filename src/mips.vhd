@@ -21,6 +21,7 @@ entity mips is
         pc_mips              : out std_logic_vector (31 downto 0);  -- instruction address to fetch
         instruction_mips     : in std_logic_vector (31 downto 0);   -- instruction data to execute in next cycle
         overflow_mips        : out std_logic;  -- flag for overflow
+		  invalid_mips : out std_logic;
         memory_write_mips    : out std_logic); -- control signal fOR data memORy read/write
 end entity;
 
@@ -44,18 +45,20 @@ signal ALUSrc_Output, MemtoReg_Output: std_logic_vector(31 downto 0);
 signal answer: std_logic_vector(31 downto 0);
 -- These values change based on what's in the register.
 signal Data_A, Data_B: std_logic_vector(31 downto 0);
+-- sign extension output
+signal sign_extend_output: std_logic_vector(31 downto 0);
 
 
 -- Project 2 Register File (see Appendix A) --
 type register_type is array(0 to 31) of std_logic_vector(31 downto 0);
-signal Register : register_type := 
+signal Registers : register_type := 
     (
         0      => x"00000000",
         4      => x"00000004",
         5      => x"00000084",
         6      => x"0000008C",
         7      => x"00000001",
-        others => x"00000000",
+        others => x"00000000"
     );
 
 ------ Component Declarations ------
@@ -117,21 +120,49 @@ ALUOp(0) <= opcode(2) and not opcode(1);
 ALUctl(3) <=   ALUOp(1) and func(2) and func(1) and func(0);
 ALUctl(2) <=   ALUOp(1) and func(1);
 ALUctl(1) <=   not ALUOp(1) or not func(2);
-ALUctl(0) <=   ALUOp(1) and
-             ( func(3) and func(1) or func(2) and func(0) ) and
-             ( func(3) xor func(2) xor func(1) xor func(0) );
+ALUctl(0) <=   ALUOp(1) and ( (func(3) and func(1)) or (func(2) and func(0)) ) and ( func(3) xor func(2) xor func(1) xor func(0) );
 
 ------ Project 2 Signal Mapping (Step 3) ------
---process(...)
---begin
---...
---end process;
+
+process(MemtoReg) -- Choose between memory output or alu output
+begin
+  if MemtoReg = '1' then
+    MemtoReg_Output <= memory_out_mips;
+  else
+    MemtoReg_Output <= ALUout;
+  end if;
+end process;
+
+process(ALUSrc)
+begin
+  if ALUSrc = '1' then
+    ALUSrc_Output <= sign_extend_output;
+  else
+    ALUSrc_Output <= Data_B;
+  end if;    
+end process;
+
+process(RegDst)
+begin
+  if RegDst = '1' then
+    RegDst_Output <= instruction_mips(15 downto 11);
+  else
+    RegDst_Output <= instruction_mips(20 downto 16);
+  end if;
+end process;
 
 ------ Project 2 Signal Mapping (Step 4) ------
---...
---memory_address_mips <=
---memory_in_mips      <= 
---memory_write_mips   <=
+
+memory_address_mips <= ALUout;
+memory_in_mips      <= Data_B;
+memory_write_mips   <= MemWrite;
+
+
+------ Project 2 Sign Extend Unit (Step 4) ------
+with ( instruction_mips(15) and '1' ) 
+  select sign_extend_output <=
+    "1111111111111111" & instruction_mips(15 downto 0) when '1',
+    "0000000000000000" & instruction_mips(15 downto 0) when others;
 
 ------ Housekeeping (PC, A, B) ---------------------  
 -- Project 2 does not use fixed operands
