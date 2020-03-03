@@ -109,22 +109,24 @@ func   <= instruction_mips(5 downto 0);
 RegDst   <= not opcode(5);
 ALUSrc   <= opcode(5);
 MemtoReg <= opcode(5);
-RegWrite <= not ( opcode(4) or opcode(3) or opcode(2) ) and 
-            not ( opcode(2) xor opcode(1) xor opcode(0) );
-MemWrite <= opcode(3) and opcode(0);
-ALUOp(1) <= not ( opcode(2) and opcode(1) );
-ALUOp(0) <= opcode(2) and not opcode(1);
+RegWrite <= (((not opcode(2)) and (not opcode(1))) or (opcode(5) and (not opcode(3))));
+MemWrite <= opcode(3);
+ALUOp(1) <= ((not opcode(5)) and (not opcode(2)));
+ALUOp(0) <= opcode(2);
 
 ------ Project 2 Signal Mapping (Step 2) ------
 
 ALUctl(3) <=   ALUOp(1) and func(2) and func(1) and func(0);
 ALUctl(2) <=   ALUOp(1) and func(1);
 ALUctl(1) <=   not ALUOp(1) or not func(2);
-ALUctl(0) <=   ALUOp(1) and ( (func(3) and func(1)) or (func(2) and func(0)) ) and ( func(3) xor func(2) xor func(1) xor func(0) );
+ALUctl(0) <= ((ALUOp(1) and func(3)) or (ALUOp(1) and (not func(1)) and func(0)));
+
 
 ------ Project 2 Signal Mapping (Step 3) ------
 
-process(MemtoReg) -- Choose between memory output or alu output
+-- Choose between memory output or alu output
+
+process(MemtoReg)
 begin
   if MemtoReg = '1' then
     MemtoReg_Output <= memory_out_mips;
@@ -132,6 +134,10 @@ begin
     MemtoReg_Output <= ALUout;
   end if;
 end process;
+
+--adding these instead of processes to test
+--with MemtoReg select MemtoReg_Output <= memory_out_mips when '1',
+--													 ALUout when others;
 
 process(ALUSrc)
 begin
@@ -142,6 +148,10 @@ begin
   end if;    
 end process;
 
+--adding these instead of processes to test
+--with ALUSrc select ALUSrc_Output <= sign_extend_output when '1',
+--												Data_B when others;
+
 process(RegDst)
 begin
   if RegDst = '1' then
@@ -151,11 +161,16 @@ begin
   end if;
 end process;
 
------- Project 2 Signal Mapping (Step 4) ------
+--adding these instead of processes to test
+--with RegDst select RegDst_Output <= instruction_mips(15 downto 11) when '1',
+--												instruction_mips(20 downto 16) when others;
 
+------ Project 2 Signal Mapping (Step 4) ------
+ 
 memory_address_mips <= ALUout;
 memory_in_mips      <= Data_B;
 memory_write_mips   <= MemWrite;
+
 
 
 ------ Project 2 Sign Extend Unit (Step 4) ------
