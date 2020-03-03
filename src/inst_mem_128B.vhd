@@ -47,10 +47,10 @@ architecture rtl of inst_memory_128B is
 
         -- set of ALU operations  
         3 => x"00435020",	-- ADDR c --	[add	$10 	$2 	$3]
-        4 => x"00435822",	-- ADDR 10 --	[sub	$11 	$2 	$3]
-        5 => x"00626022",	-- ADDR 14 --	[sub	$12 	$3 	$2]
-        6 => x"0062682a",	-- ADDR 18 --	[slt	$13 	$3 	$2]
-        7 => x"0043702a",	-- ADDR 1c --	[slt	$14 	$2 	$3]
+        4 => x"00626022",	-- ADDR 10 --	[sub	$11 	$3 	$2]00435822
+        5 => x"00435822",	-- ADDR 14 --	[sub	$12 	$2 	$3]00626022
+        6 => x"0043702a",	-- ADDR 18 --	[slt	$13 	$2 	$3]0062682a
+        7 => x"0062682a",	-- ADDR 1c --	[slt	$14 	$3 	$2]0043702a
         
         -- save results to data memory [88-a0]        
         8 => x"acca0000",	-- ADDR 20 --	[sw	$10 	0($6)]			
