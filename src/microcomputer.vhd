@@ -125,14 +125,14 @@ begin
 				     plusone6 <= pc(27 downto 24);
 				     plusone7 <= pc(31 downto 28);
        else                     -- SW(0)=0: display data memory input (ALU Output) on ledr(9:2) & hex5~0
-             plusone  <= memory_in(3 downto 0);
-             plusone1 <= memory_in(7 downto 4);
-             plusone2 <= memory_in(11 downto 8);
-             plusone3 <= memory_in(15 downto 12);
-				     plusone4 <= memory_in(19 downto 16);
-				     plusone5 <= memory_in(23 downto 20);
-				     plusone6 <= memory_in(27 downto 24);
-				     plusone7 <= memory_in(31 downto 28);
+             plusone  <= memory_address(3 downto 0);    ------ (CORRECTED)
+             plusone1 <= memory_address(7 downto 4);    ------ (CORRECTED)
+             plusone2 <= memory_address(11 downto 8);   ------ (CORRECTED)
+             plusone3 <= memory_address(15 downto 12);  ------ (CORRECTED)
+				     plusone4 <= memory_address(19 downto 16);  ------ (CORRECTED)
+				     plusone5 <= memory_address(23 downto 20);  ------ (CORRECTED)
+				     plusone6 <= memory_address(27 downto 24);  ------ (CORRECTED)
+				     plusone7 <= memory_address(31 downto 28);  ------ (CORRECTED)
        end if;
     end process;
 	 
