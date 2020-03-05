@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <style type="text/css">
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+body .hll { background-color: #ffffcc }
+body  { background: #f0f0f0; }
+body .c { color: #60a0b0; font-style: italic } /* Comment */
+body .err { border: 1px solid #FF0000 } /* Error */
+body .k { color: #007020; font-weight: bold } /* Keyword */
+body .o { color: #666666 } /* Operator */
+body .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
+body .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+body .cp { color: #007020 } /* Comment.Preproc */
+body .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
+body .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+body .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+body .gd { color: #A00000 } /* Generic.Deleted */
+body .ge { font-style: italic } /* Generic.Emph */
+body .gr { color: #FF0000 } /* Generic.Error */
+body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+body .gi { color: #00A000 } /* Generic.Inserted */
+body .go { color: #888888 } /* Generic.Output */
+body .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+body .gs { font-weight: bold } /* Generic.Strong */
+body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+body .gt { color: #0044DD } /* Generic.Traceback */
+body .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+body .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+body .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+body .kp { color: #007020 } /* Keyword.Pseudo */
+body .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+body .kt { color: #902000 } /* Keyword.Type */
+body .m { color: #40a070 } /* Literal.Number */
+body .s { color: #4070a0 } /* Literal.String */
+body .na { color: #4070a0 } /* Name.Attribute */
+body .nb { color: #007020 } /* Name.Builtin */
+body .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+body .no { color: #60add5 } /* Name.Constant */
+body .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+body .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+body .ne { color: #007020 } /* Name.Exception */
+body .nf { color: #06287e } /* Name.Function */
+body .nl { color: #002070; font-weight: bold } /* Name.Label */
+body .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+body .nt { color: #062873; font-weight: bold } /* Name.Tag */
+body .nv { color: #bb60d5 } /* Name.Variable */
+body .ow { color: #007020; font-weight: bold } /* Operator.Word */
+body .w { color: #bbbbbb } /* Text.Whitespace */
+body .mb { color: #40a070 } /* Literal.Number.Bin */
+body .mf { color: #40a070 } /* Literal.Number.Float */
+body .mh { color: #40a070 } /* Literal.Number.Hex */
+body .mi { color: #40a070 } /* Literal.Number.Integer */
+body .mo { color: #40a070 } /* Literal.Number.Oct */
+body .sa { color: #4070a0 } /* Literal.String.Affix */
+body .sb { color: #4070a0 } /* Literal.String.Backtick */
+body .sc { color: #4070a0 } /* Literal.String.Char */
+body .dl { color: #4070a0 } /* Literal.String.Delimiter */
+body .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+body .s2 { color: #4070a0 } /* Literal.String.Double */
+body .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+body .sh { color: #4070a0 } /* Literal.String.Heredoc */
+body .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+body .sx { color: #c65d09 } /* Literal.String.Other */
+body .sr { color: #235388 } /* Literal.String.Regex */
+body .s1 { color: #4070a0 } /* Literal.String.Single */
+body .ss { color: #517918 } /* Literal.String.Symbol */
+body .bp { color: #007020 } /* Name.Builtin.Pseudo */
+body .fm { color: #06287e } /* Name.Function.Magic */
+body .vc { color: #bb60d5 } /* Name.Variable.Class */
+body .vg { color: #bb60d5 } /* Name.Variable.Global */
+body .vi { color: #bb60d5 } /* Name.Variable.Instance */
+body .vm { color: #bb60d5 } /* Name.Variable.Magic */
+body .il { color: #40a070 } /* Literal.Number.Integer.Long */
+
+  </style>
+</head>
+<body>
+<h2></h2>
+
+<div class="highlight"><pre><span></span><span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<span class="c1">--</span>
+<span class="c1">-- EEC 483 Project</span>
+<span class="c1">-- Implementation of MIPS</span>
+<span class="c1">--</span>
+<span class="c1">-- File name   : microcomputer.vhd</span>
+<span class="c1">--              </span>
+<span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<span class="k">library</span> <span class="nn">ieee</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">ieee.std_logic_1164.</span><span class="k">all</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">ieee.std_logic_unsigned.</span><span class="k">all</span><span class="p">;</span>
+<span class="k">library</span> <span class="nn">work</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">work.</span><span class="k">all</span><span class="p">;</span>
+
+  
+<span class="k">entity</span> <span class="nc">microcomputer</span> <span class="k">is</span>
+    <span class="k">port</span> <span class="p">(</span><span class="n">clock_micro</span>    <span class="o">:</span> <span class="k">in</span>   <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">reset_micro</span>     <span class="o">:</span> <span class="k">in</span>   <span class="kt">std_logic</span><span class="p">;</span>
+	        <span class="n">key_micro</span>       <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">sw_micro</span>        <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">9</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+ 			    <span class="c1">-- SW(0)=0: display pc on 7-segment display</span>
+	        <span class="c1">-- SW(0)=1: display data memory in (ALU Output) on 7-segment display</span>
+          <span class="n">ledr_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">9</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">hex0_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">hex1_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">hex2_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">hex3_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+          <span class="n">hex4_micro</span>      <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+  			 <span class="n">hex5_micro</span>		  <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">6</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">));</span>
+  			  <span class="c1">-- ledr(9:2) &amp; hex5~0 shows 32-bit data</span>
+  			  <span class="c1">-- where ledr(9:2) shows the most significant 2 bytes</span>
+<span class="k">end</span> <span class="k">entity</span><span class="p">;</span>
+
+<span class="k">architecture</span> <span class="nc">rtl</span> <span class="k">of</span> <span class="nc">microcomputer</span> <span class="k">is</span>
+
+<span class="c1">------ Component Declarations ------</span>
+    <span class="k">component</span> <span class="nc">mips</span>
+    <span class="k">port</span> <span class="p">(</span><span class="n">clock_mips</span>    			 <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">reset_mips</span>     			 <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">memory_in_mips</span>       <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- data to write into memory (sw)</span>
+          <span class="n">memory_out_mips</span>      <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- data being read from memory (lw)</span>
+          <span class="n">memory_address_mips</span>  <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- memory address to read/write</span>
+          <span class="n">pc_mips</span>              <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- instruction address to fetch</span>
+          <span class="n">instruction_mips</span>     <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>   <span class="c1">-- instruction data to execute in the next cycle</span>
+          <span class="n">overflow_mips</span>			   <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>   <span class="c1">-- overflow flag</span>
+			    <span class="n">invalid_mips</span>			   <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>   <span class="c1">-- invalid opcode flag</span>
+			    <span class="n">memory_write_mips</span>    <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">);</span>                      <span class="c1">-- control signal for data memory read/write</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+    <span class="k">component</span> <span class="nc">inst_memory_128B</span>
+    <span class="k">port</span> <span class="p">(</span><span class="n">clock_im</span>        <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">reset_im</span>        <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">pc_im</span>           <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	  <span class="c1">-- instruction address to fetch</span>
+          <span class="n">instruction_im</span>  <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">));</span>    <span class="c1">-- instruction data to execute in the next cycle       </span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+	 
+    <span class="k">component</span> <span class="nc">data_memory_64B</span>
+    <span class="k">port</span> <span class="p">(</span><span class="n">clock_dm</span>          <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">reset_dm</span>          <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+          <span class="n">memory_address_dm</span> <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	  <span class="c1">-- memory address to read/write</span>
+          <span class="n">memory_write_dm</span>   <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>                        <span class="c1">-- control signal for data memory read/write</span>
+          <span class="n">memory_in_dm</span>      <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	  <span class="c1">-- data to write into memory (sw)</span>
+          <span class="n">memory_out_dm</span>     <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">));</span>  <span class="c1">-- data being read from memory (lw)</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+
+ <span class="c1">-- Signal Declaration</span>
+ 
+    <span class="k">signal</span> <span class="n">memory_in</span>         <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">-- data to write into memory (sw)</span>
+    <span class="k">signal</span> <span class="n">memory_out</span>        <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">-- data being read from memory (lw)</span>
+    <span class="k">signal</span> <span class="n">memory_address</span>    <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">-- memory address to read/write</span>
+    <span class="k">signal</span> <span class="n">memory_write</span>      <span class="o">:</span> <span class="kt">STD_LOGIC</span><span class="p">;</span>                           <span class="c1">-- control signal for data memory read/write</span>
+    <span class="k">signal</span> <span class="n">instruction</span>       <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">-- instruction data to execute in the next cycle </span>
+    <span class="k">signal</span> <span class="n">pc</span>                <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>      <span class="c1">-- instruction address to fetch</span>
+	  <span class="k">signal</span> <span class="n">overflow</span>		  	   <span class="o">:</span> <span class="kt">STD_LOGIC</span><span class="p">;</span>
+	  <span class="k">signal</span> <span class="n">invalid</span>		  	   <span class="o">:</span> <span class="kt">STD_LOGIC</span><span class="p">;</span>
+	 
+    <span class="k">signal</span> <span class="n">plusone</span>           <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone1</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone2</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone3</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+	  <span class="k">signal</span> <span class="n">plusone4</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone5</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone6</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+    <span class="k">signal</span> <span class="n">plusone7</span>          <span class="o">:</span> <span class="kt">STD_LOGIC_VECTOR</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>	<span class="c1">-- this is for 7-segment display</span>
+	 <span class="k">signal</span> <span class="n">sw0</span>      <span class="o">:</span> <span class="kt">STD_LOGIC</span><span class="p">;</span> 
+	 
+<span class="k">begin</span>
+
+<span class="c1">------ Component Instantiations ------</span>
+    <span class="n">CPU_1</span> <span class="o">:</span> <span class="n">mips</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">clock_mips</span><span class="o">=&gt;</span><span class="n">clock_micro</span><span class="p">,</span> <span class="n">reset_mips</span><span class="o">=&gt;</span><span class="n">reset_micro</span><span class="p">,</span>
+				  <span class="n">memory_in_mips</span>         <span class="o">=&gt;</span> <span class="n">memory_in</span><span class="p">,</span>
+				  <span class="n">memory_out_mips</span>        <span class="o">=&gt;</span> <span class="n">memory_out</span><span class="p">,</span>
+				  <span class="n">memory_address_mips</span>    <span class="o">=&gt;</span> <span class="n">memory_address</span><span class="p">,</span>
+				  <span class="n">pc_mips</span>                <span class="o">=&gt;</span> <span class="n">pc</span><span class="p">,</span>
+				  <span class="n">overflow_mips</span>			     <span class="o">=&gt;</span> <span class="n">overflow</span><span class="p">,</span>
+				  <span class="n">invalid_mips</span>			 	   <span class="o">=&gt;</span> <span class="n">invalid</span><span class="p">,</span>
+				  <span class="n">instruction_mips</span>       <span class="o">=&gt;</span> <span class="n">instruction</span><span class="p">,</span>
+				  <span class="n">memory_write_mips</span>      <span class="o">=&gt;</span> <span class="n">memory_write</span><span class="p">);</span>    
+
+    <span class="n">MEMORY_1</span> <span class="o">:</span> <span class="n">inst_memory_128B</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">clock_im</span><span class="o">=&gt;</span><span class="n">clock_micro</span><span class="p">,</span> <span class="n">reset_im</span><span class="o">=&gt;</span><span class="n">reset_micro</span><span class="p">,</span>        
+				  <span class="n">pc_im</span>                  <span class="o">=&gt;</span> <span class="n">pc</span><span class="p">,</span>
+				  <span class="n">instruction_im</span>         <span class="o">=&gt;</span> <span class="n">instruction</span><span class="p">);</span>
+
+    <span class="n">MEMORY_2</span> <span class="o">:</span> <span class="n">data_memory_64B</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">clock_dm</span><span class="o">=&gt;</span><span class="n">clock_micro</span><span class="p">,</span> <span class="n">reset_dm</span><span class="o">=&gt;</span><span class="n">reset_micro</span><span class="p">,</span>
+				  <span class="n">memory_address_dm</span>     <span class="o">=&gt;</span> <span class="n">memory_address</span><span class="p">,</span>
+				  <span class="n">memory_write_dm</span>       <span class="o">=&gt;</span> <span class="n">memory_write</span><span class="p">,</span>
+				  <span class="n">memory_in_dm</span>          <span class="o">=&gt;</span> <span class="n">memory_in</span><span class="p">,</span>
+				  <span class="n">memory_out_dm</span>         <span class="o">=&gt;</span> <span class="n">memory_out</span><span class="p">);</span>
+
+    <span class="n">sw0</span> <span class="o">&lt;=</span> <span class="n">sw_micro</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="k">process</span> <span class="p">(</span><span class="n">sw0</span><span class="p">,</span> <span class="n">pc</span><span class="p">,</span> <span class="n">memory_in</span><span class="p">)</span> 
+    <span class="k">begin</span>
+       <span class="k">if</span> <span class="p">(</span><span class="n">sw0</span><span class="o">=</span><span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="k">then</span>                   <span class="c1">-- SW(0)=1: display pc on ledr(9:2) &amp; hex5~0</span>
+             <span class="n">plusone</span>  <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+             <span class="n">plusone1</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">7</span> <span class="k">downto</span> <span class="mi">4</span><span class="p">);</span>
+             <span class="n">plusone2</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">11</span> <span class="k">downto</span> <span class="mi">8</span><span class="p">);</span>
+             <span class="n">plusone3</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">15</span> <span class="k">downto</span> <span class="mi">12</span><span class="p">);</span>
+				     <span class="n">plusone4</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">19</span> <span class="k">downto</span> <span class="mi">16</span><span class="p">);</span>
+				     <span class="n">plusone5</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">23</span> <span class="k">downto</span> <span class="mi">20</span><span class="p">);</span>
+				     <span class="n">plusone6</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">27</span> <span class="k">downto</span> <span class="mi">24</span><span class="p">);</span>
+				     <span class="n">plusone7</span> <span class="o">&lt;=</span> <span class="n">pc</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">28</span><span class="p">);</span>
+       <span class="k">else</span>                     <span class="c1">-- SW(0)=0: display data memory input (ALU Output) on ledr(9:2) &amp; hex5~0</span>
+             <span class="n">plusone</span>  <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>    <span class="c1">------ (CORRECTED)</span>
+             <span class="n">plusone1</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">7</span> <span class="k">downto</span> <span class="mi">4</span><span class="p">);</span>    <span class="c1">------ (CORRECTED)</span>
+             <span class="n">plusone2</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">11</span> <span class="k">downto</span> <span class="mi">8</span><span class="p">);</span>   <span class="c1">------ (CORRECTED)</span>
+             <span class="n">plusone3</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">15</span> <span class="k">downto</span> <span class="mi">12</span><span class="p">);</span>  <span class="c1">------ (CORRECTED)</span>
+				     <span class="n">plusone4</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">19</span> <span class="k">downto</span> <span class="mi">16</span><span class="p">);</span>  <span class="c1">------ (CORRECTED)</span>
+				     <span class="n">plusone5</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">23</span> <span class="k">downto</span> <span class="mi">20</span><span class="p">);</span>  <span class="c1">------ (CORRECTED)</span>
+				     <span class="n">plusone6</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">27</span> <span class="k">downto</span> <span class="mi">24</span><span class="p">);</span>  <span class="c1">------ (CORRECTED)</span>
+				     <span class="n">plusone7</span> <span class="o">&lt;=</span> <span class="n">memory_address</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">28</span><span class="p">);</span>  <span class="c1">------ (CORRECTED)</span>
+       <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+	 
+    <span class="n">h0</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex0_micro</span><span class="p">);</span>      <span class="c1">-- display on ledr(7:0) &amp; hex5~0</span>
+    <span class="n">h1</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone1</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex1_micro</span><span class="p">);</span>
+    <span class="n">h2</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone2</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex2_micro</span><span class="p">);</span>
+    <span class="n">h3</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone3</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex3_micro</span><span class="p">);</span> 
+    <span class="n">h4</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone4</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex4_micro</span><span class="p">);</span>    
+    <span class="n">h5</span><span class="o">:</span> <span class="n">hex</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span><span class="n">plusone5</span><span class="p">,</span> <span class="n">o</span> <span class="o">=&gt;</span> <span class="n">hex5_micro</span><span class="p">);</span>    
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone7</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone7</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone7</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone7</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone6</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone6</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone6</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>  
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">plusone6</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	 
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">overflow</span><span class="p">;</span>  
+    <span class="n">ledr_micro</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">invalid</span><span class="p">;</span>	 
+          
+<span class="k">end</span> <span class="k">architecture</span><span class="p">;</span>
+</pre></div>
+</body>
+</html>
