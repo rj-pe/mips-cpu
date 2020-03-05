@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <style type="text/css">
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+body .hll { background-color: #ffffcc }
+body  { background: #f0f0f0; }
+body .c { color: #60a0b0; font-style: italic } /* Comment */
+body .err { border: 1px solid #FF0000 } /* Error */
+body .k { color: #007020; font-weight: bold } /* Keyword */
+body .o { color: #666666 } /* Operator */
+body .ch { color: #60a0b0; font-style: italic } /* Comment.Hashbang */
+body .cm { color: #60a0b0; font-style: italic } /* Comment.Multiline */
+body .cp { color: #007020 } /* Comment.Preproc */
+body .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
+body .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
+body .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+body .gd { color: #A00000 } /* Generic.Deleted */
+body .ge { font-style: italic } /* Generic.Emph */
+body .gr { color: #FF0000 } /* Generic.Error */
+body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+body .gi { color: #00A000 } /* Generic.Inserted */
+body .go { color: #888888 } /* Generic.Output */
+body .gp { color: #c65d09; font-weight: bold } /* Generic.Prompt */
+body .gs { font-weight: bold } /* Generic.Strong */
+body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+body .gt { color: #0044DD } /* Generic.Traceback */
+body .kc { color: #007020; font-weight: bold } /* Keyword.Constant */
+body .kd { color: #007020; font-weight: bold } /* Keyword.Declaration */
+body .kn { color: #007020; font-weight: bold } /* Keyword.Namespace */
+body .kp { color: #007020 } /* Keyword.Pseudo */
+body .kr { color: #007020; font-weight: bold } /* Keyword.Reserved */
+body .kt { color: #902000 } /* Keyword.Type */
+body .m { color: #40a070 } /* Literal.Number */
+body .s { color: #4070a0 } /* Literal.String */
+body .na { color: #4070a0 } /* Name.Attribute */
+body .nb { color: #007020 } /* Name.Builtin */
+body .nc { color: #0e84b5; font-weight: bold } /* Name.Class */
+body .no { color: #60add5 } /* Name.Constant */
+body .nd { color: #555555; font-weight: bold } /* Name.Decorator */
+body .ni { color: #d55537; font-weight: bold } /* Name.Entity */
+body .ne { color: #007020 } /* Name.Exception */
+body .nf { color: #06287e } /* Name.Function */
+body .nl { color: #002070; font-weight: bold } /* Name.Label */
+body .nn { color: #0e84b5; font-weight: bold } /* Name.Namespace */
+body .nt { color: #062873; font-weight: bold } /* Name.Tag */
+body .nv { color: #bb60d5 } /* Name.Variable */
+body .ow { color: #007020; font-weight: bold } /* Operator.Word */
+body .w { color: #bbbbbb } /* Text.Whitespace */
+body .mb { color: #40a070 } /* Literal.Number.Bin */
+body .mf { color: #40a070 } /* Literal.Number.Float */
+body .mh { color: #40a070 } /* Literal.Number.Hex */
+body .mi { color: #40a070 } /* Literal.Number.Integer */
+body .mo { color: #40a070 } /* Literal.Number.Oct */
+body .sa { color: #4070a0 } /* Literal.String.Affix */
+body .sb { color: #4070a0 } /* Literal.String.Backtick */
+body .sc { color: #4070a0 } /* Literal.String.Char */
+body .dl { color: #4070a0 } /* Literal.String.Delimiter */
+body .sd { color: #4070a0; font-style: italic } /* Literal.String.Doc */
+body .s2 { color: #4070a0 } /* Literal.String.Double */
+body .se { color: #4070a0; font-weight: bold } /* Literal.String.Escape */
+body .sh { color: #4070a0 } /* Literal.String.Heredoc */
+body .si { color: #70a0d0; font-style: italic } /* Literal.String.Interpol */
+body .sx { color: #c65d09 } /* Literal.String.Other */
+body .sr { color: #235388 } /* Literal.String.Regex */
+body .s1 { color: #4070a0 } /* Literal.String.Single */
+body .ss { color: #517918 } /* Literal.String.Symbol */
+body .bp { color: #007020 } /* Name.Builtin.Pseudo */
+body .fm { color: #06287e } /* Name.Function.Magic */
+body .vc { color: #bb60d5 } /* Name.Variable.Class */
+body .vg { color: #bb60d5 } /* Name.Variable.Global */
+body .vi { color: #bb60d5 } /* Name.Variable.Instance */
+body .vm { color: #bb60d5 } /* Name.Variable.Magic */
+body .il { color: #40a070 } /* Literal.Number.Integer.Long */
+
+  </style>
+</head>
+<body>
+<h2></h2>
+
+<div class="highlight"><pre><span></span><span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<span class="c1">--</span>
+<span class="c1">-- EEC 483 Project</span>
+<span class="c1">-- Implementation of MIPS</span>
+<span class="c1">-- File name   : mips.vhd</span>
+<span class="c1">-- Description : Implements control signals for correctly decoding MIPS instructions.</span>
+<span class="c1">------------------------------------------------------------------------------------------------------------</span>
+<span class="k">library</span> <span class="nn">ieee</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">ieee.std_logic_1164.</span><span class="k">all</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">ieee.std_logic_unsigned.</span><span class="k">all</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">ieee.numeric_std.</span><span class="k">all</span><span class="p">;</span>
+  
+<span class="k">entity</span> <span class="nc">mips</span> <span class="k">is</span>
+    <span class="k">port</span> <span class="p">(</span>
+        <span class="n">clock_mips</span>           <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+        <span class="n">reset_mips</span>           <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic</span><span class="p">;</span>
+        <span class="n">memory_in_mips</span>       <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- data to write into memory (sw)</span>
+        <span class="n">memory_out_mips</span>      <span class="o">:</span> <span class="k">in</span>  <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- data being read from memory (lw)</span>
+        <span class="n">memory_address_mips</span>  <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- memory address to read/write</span>
+        <span class="n">pc_mips</span>              <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- instruction address to fetch</span>
+        <span class="n">instruction_mips</span>     <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>   <span class="c1">-- instruction data to execute in next cycle</span>
+        <span class="n">overflow_mips</span>        <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>  <span class="c1">-- flag for overflow</span>
+          <span class="n">invalid_mips</span> <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span>
+        <span class="n">memory_write_mips</span>    <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">);</span> <span class="c1">-- control signal fOR data memORy read/write</span>
+<span class="k">end</span> <span class="k">entity</span><span class="p">;</span>
+
+<span class="k">architecture</span> <span class="nc">rtl</span> <span class="k">of</span> <span class="nc">mips</span> <span class="k">is</span>
+
+<span class="c1">------ Signal Declaration ------</span>
+<span class="k">signal</span> <span class="n">XY</span>      <span class="o">:</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">-- instruction address to fetch</span>
+<span class="k">signal</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span>    <span class="o">:</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">-- ALU input values</span>
+<span class="k">signal</span> <span class="n">ALUOut</span>  <span class="o">:</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">-- ALU output value</span>
+<span class="k">signal</span> <span class="n">ALUctl</span>  <span class="o">:</span> <span class="kt">std_logic_vector</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- ALU output value</span>
+<span class="k">signal</span> <span class="n">overflow</span> <span class="o">:</span> <span class="kt">std_logic</span><span class="p">;</span>  <span class="c1">-- overflow flag</span>
+<span class="k">signal</span> <span class="n">Zero</span>    <span class="o">:</span> <span class="kt">std_logic</span><span class="p">;</span>   <span class="c1">-- 1 bit signals fOR ALU arithmetic operations</span>
+
+<span class="c1">------ Project 2 Signals ------</span>
+<span class="k">signal</span> <span class="n">RegDst</span><span class="p">,</span> <span class="n">RegWrite</span><span class="p">,</span> <span class="n">MemWrite</span><span class="p">,</span> <span class="n">ALUSrc</span><span class="p">,</span> <span class="n">MemtoReg</span> <span class="o">:</span> <span class="kt">std_logic</span><span class="p">;</span>
+<span class="k">signal</span> <span class="n">ALUOp</span> <span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">opcode</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">5</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">func</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">5</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">RegDst_Output</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">4</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">ALUSrc_Output</span><span class="p">,</span> <span class="n">MemtoReg_Output</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">answer</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">-- These values change based on what&#39;s in the register.</span>
+<span class="k">signal</span> <span class="n">Data_A</span><span class="p">,</span> <span class="n">Data_B</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">-- sign extension output</span>
+<span class="k">signal</span> <span class="n">sign_extend_output</span><span class="o">:</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+
+
+<span class="c1">-- Project 2 Register File (see Appendix A) --</span>
+<span class="k">type</span> <span class="n">register_type</span> <span class="k">is</span> <span class="k">array</span><span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">31</span><span class="p">)</span> <span class="k">of</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">signal</span> <span class="n">Registers</span> <span class="o">:</span> <span class="n">register_type</span> <span class="o">:=</span> 
+    <span class="p">(</span>
+        <span class="mi">0</span>      <span class="o">=&gt;</span> <span class="mh">x&quot;00000000&quot;</span><span class="p">,</span>
+        <span class="mi">4</span>      <span class="o">=&gt;</span> <span class="mh">x&quot;00000004&quot;</span><span class="p">,</span>
+        <span class="mi">5</span>      <span class="o">=&gt;</span> <span class="mh">x&quot;00000084&quot;</span><span class="p">,</span>
+        <span class="mi">6</span>      <span class="o">=&gt;</span> <span class="mh">x&quot;0000008C&quot;</span><span class="p">,</span>
+        <span class="mi">7</span>      <span class="o">=&gt;</span> <span class="mh">x&quot;00000001&quot;</span><span class="p">,</span>
+        <span class="k">others</span> <span class="o">=&gt;</span> <span class="mh">x&quot;00000000&quot;</span>
+    <span class="p">);</span>
+
+<span class="c1">------ Component Declarations ------</span>
+<span class="k">component</span> <span class="nc">ALU_32</span>
+    <span class="k">port</span><span class="p">(</span>
+        <span class="n">A_alu32</span>        <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- A input</span>
+        <span class="n">B_alu32</span>        <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">-- B input</span>
+        <span class="n">ALUctl_alu32</span>   <span class="o">:</span> <span class="k">in</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>   <span class="c1">-- control</span>
+        <span class="n">ALUout_alu32</span>   <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">-- result</span>
+        <span class="n">overflow_alu32</span> <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">;</span> <span class="c1">-- overflow result</span>
+        <span class="n">Zero_alu32</span>     <span class="o">:</span> <span class="k">out</span> <span class="kt">std_logic</span><span class="p">);</span> <span class="c1">-- check if ALUout is zero</span>
+<span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+<span class="c1">------ Component Instantiations ------</span>
+<span class="n">ALU_32_1</span> <span class="o">:</span> <span class="n">ALU_32</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span>
+        <span class="n">A_alu32</span>        <span class="o">=&gt;</span> <span class="n">A</span><span class="p">,</span>
+        <span class="n">B_alu32</span>        <span class="o">=&gt;</span> <span class="n">B</span><span class="p">,</span>
+        <span class="n">ALUctl_alu32</span>   <span class="o">=&gt;</span> <span class="n">ALUctl</span><span class="p">,</span>
+        <span class="n">ALUout_alu32</span>   <span class="o">=&gt;</span> <span class="n">ALUout</span><span class="p">,</span>
+        <span class="n">overflow_alu32</span> <span class="o">=&gt;</span> <span class="n">overflow</span><span class="p">,</span>
+        <span class="n">Zero_alu32</span>     <span class="o">=&gt;</span> <span class="n">Zero</span><span class="p">);</span>
+
+<span class="c1">--- Project 2 Register R/W (see Appendix A &amp; B) --</span>
+<span class="c1">--- synchronous write to registers</span>
+<span class="k">process</span><span class="p">(</span><span class="n">CLOCK_mips</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="p">(</span><span class="n">clock_mips</span><span class="p">))</span> <span class="k">then</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">RegWrite</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">Registers</span><span class="p">(</span><span class="n">to_integer</span><span class="p">(</span><span class="kt">unsigned</span><span class="p">(</span><span class="n">RegDst_Output</span><span class="p">)))</span> <span class="o">&lt;=</span> <span class="n">MemtoReg_Output</span><span class="p">;</span>
+        <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="c1">-- Asynchronous read from registers --</span>
+<span class="c1">-- Read register 1.</span>
+<span class="n">Data_A</span> <span class="o">&lt;=</span> <span class="n">Registers</span><span class="p">((</span><span class="n">to_integer</span><span class="p">(</span><span class="kt">unsigned</span><span class="p">(</span><span class="n">instruction_mips</span><span class="p">(</span><span class="mi">25</span> <span class="k">downto</span> <span class="mi">21</span><span class="p">)))));</span>
+<span class="c1">-- Read register 2.</span>
+<span class="n">Data_B</span> <span class="o">&lt;=</span> <span class="n">Registers</span><span class="p">((</span><span class="n">to_integer</span><span class="p">(</span><span class="kt">unsigned</span><span class="p">(</span><span class="n">instruction_mips</span><span class="p">(</span><span class="mi">20</span> <span class="k">downto</span> <span class="mi">16</span><span class="p">)))));</span>
+
+<span class="c1">------ Project 2 Signal Mapping (Step 1) ------      </span>
+<span class="n">opcode</span> <span class="o">&lt;=</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">31</span> <span class="k">downto</span> <span class="mi">26</span><span class="p">);</span>
+<span class="n">func</span>   <span class="o">&lt;=</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">5</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">-- Boolean expressions for control circuit signals --</span>
+<span class="n">RegDst</span>   <span class="o">&lt;=</span> <span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">ALUSrc</span>   <span class="o">&lt;=</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">MemtoReg</span> <span class="o">&lt;=</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">RegWrite</span> <span class="o">&lt;=</span> <span class="p">(((</span><span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="k">and</span> <span class="p">(</span><span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span> <span class="k">or</span> <span class="p">(</span><span class="n">opcode</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">3</span><span class="p">))));</span>
+<span class="n">MemWrite</span> <span class="o">&lt;=</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">((</span><span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="k">and</span> <span class="p">(</span><span class="k">not</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">2</span><span class="p">)));</span>
+<span class="n">ALUOp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">opcode</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">------ Project 2 Signal Mapping (Step 2) ------</span>
+
+<span class="n">ALUctl</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;=</span>   <span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">ALUctl</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span>   <span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ALUctl</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span>   <span class="k">not</span> <span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">or</span> <span class="k">not</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">ALUctl</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">((</span><span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="k">or</span> <span class="p">(</span><span class="n">ALUOp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="k">not</span> <span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">and</span> <span class="n">func</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+
+
+<span class="c1">------ Project 2 Signal Mapping (Step 3) ------</span>
+
+<span class="c1">-- Choose between memory output or alu output</span>
+
+<span class="k">process</span><span class="p">(</span><span class="n">MemtoReg</span><span class="p">)</span>
+<span class="k">begin</span>
+  <span class="k">if</span> <span class="n">MemtoReg</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span> <span class="k">then</span>
+    <span class="n">MemtoReg_Output</span> <span class="o">&lt;=</span> <span class="n">memory_out_mips</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">MemtoReg_Output</span> <span class="o">&lt;=</span> <span class="n">ALUout</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="c1">--adding these instead of processes to test</span>
+<span class="c1">--with MemtoReg select MemtoReg_Output &lt;= memory_out_mips when &#39;1&#39;,</span>
+<span class="c1">--                                                   ALUout when others;</span>
+
+<span class="k">process</span><span class="p">(</span><span class="n">ALUSrc</span><span class="p">)</span>
+<span class="k">begin</span>
+  <span class="k">if</span> <span class="n">ALUSrc</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span> <span class="k">then</span>
+    <span class="n">ALUSrc_Output</span> <span class="o">&lt;=</span> <span class="n">sign_extend_output</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">ALUSrc_Output</span> <span class="o">&lt;=</span> <span class="n">Data_B</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="c1">--adding these instead of processes to test</span>
+<span class="c1">--with ALUSrc select ALUSrc_Output &lt;= sign_extend_output when &#39;1&#39;,</span>
+<span class="c1">--                                              Data_B when others;</span>
+
+<span class="k">process</span><span class="p">(</span><span class="n">RegDst</span><span class="p">)</span>
+<span class="k">begin</span>
+  <span class="k">if</span> <span class="n">RegDst</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span> <span class="k">then</span>
+    <span class="n">RegDst_Output</span> <span class="o">&lt;=</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">15</span> <span class="k">downto</span> <span class="mi">11</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">RegDst_Output</span> <span class="o">&lt;=</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">20</span> <span class="k">downto</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="c1">--adding these instead of processes to test</span>
+<span class="c1">--with RegDst select RegDst_Output &lt;= instruction_mips(15 downto 11) when &#39;1&#39;,</span>
+<span class="c1">--                instruction_mips(20 downto 16) when others;</span>
+
+<span class="c1">------ Project 2 Signal Mapping (Step 4) ------</span>
+ 
+<span class="n">memory_address_mips</span> <span class="o">&lt;=</span> <span class="n">ALUout</span><span class="p">;</span>
+<span class="n">memory_in_mips</span>      <span class="o">&lt;=</span> <span class="n">Data_B</span><span class="p">;</span>
+<span class="n">memory_write_mips</span>   <span class="o">&lt;=</span> <span class="n">MemWrite</span><span class="p">;</span>
+
+
+
+<span class="c1">------ Project 2 Sign Extend Unit (Step 4) ------</span>
+<span class="k">with</span> <span class="p">(</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="k">and</span> <span class="sc">&#39;1&#39;</span> <span class="p">)</span> 
+  <span class="k">select</span> <span class="n">sign_extend_output</span> <span class="o">&lt;=</span>
+    <span class="s">&quot;1111111111111111&quot;</span> <span class="o">&amp;</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">15</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="k">when</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span>
+    <span class="s">&quot;0000000000000000&quot;</span> <span class="o">&amp;</span> <span class="n">instruction_mips</span><span class="p">(</span><span class="mi">15</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="k">when</span> <span class="k">others</span><span class="p">;</span>
+
+<span class="c1">------ Housekeeping (PC, A, B) ---------------------  </span>
+<span class="c1">-- Project 2 does not use fixed operands</span>
+
+<span class="n">A</span> <span class="o">&lt;=</span> <span class="n">Data_A</span><span class="p">;</span>
+<span class="n">B</span> <span class="o">&lt;=</span> <span class="n">ALUSrc_Output</span><span class="p">;</span>
+
+<span class="c1">-- ??? Don&#39;t see the following line in the updated proj2 code.</span>
+<span class="n">overflow_mips</span> <span class="o">&lt;=</span> <span class="n">overflow</span><span class="p">;</span> 
+
+<span class="n">pc_mips</span> <span class="o">&lt;=</span> <span class="n">XY</span><span class="p">;</span>
+
+<span class="k">process</span> <span class="p">(</span><span class="n">CLOCK_mips</span><span class="p">,</span> <span class="n">reset_mips</span><span class="p">)</span> 
+<span class="k">begin</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">reset_mips</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="k">then</span>
+       <span class="n">XY</span> <span class="o">&lt;=</span> <span class="mh">x&quot;00000000&quot;</span><span class="p">;</span>
+    <span class="k">elsif</span><span class="p">(</span><span class="n">RISING_EDGE</span><span class="p">(</span><span class="n">CLOCK_mips</span><span class="p">))</span> <span class="k">then</span>
+       <span class="n">XY</span> <span class="o">&lt;=</span> <span class="n">XY</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">XY</span> <span class="o">&lt;=</span> <span class="n">XY</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">architecture</span><span class="p">;</span>
+</pre></div>
+</body>
+</html>
