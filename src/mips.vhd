@@ -3,8 +3,7 @@
 -- EEC 483 Project
 -- Implementation of MIPS
 -- File name   : mips.vhd
--- Description : Instantiates program and data memory, a 32-bit ALU. Feeds the
---               ALU with two 32-bit operands and ALUctl.
+-- Description : Implements control signals for correctly decoding MIPS instructions.
 ------------------------------------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -21,7 +20,7 @@ entity mips is
         pc_mips              : out std_logic_vector (31 downto 0);  -- instruction address to fetch
         instruction_mips     : in std_logic_vector (31 downto 0);   -- instruction data to execute in next cycle
         overflow_mips        : out std_logic;  -- flag for overflow
-		  invalid_mips : out std_logic;
+          invalid_mips : out std_logic;
         memory_write_mips    : out std_logic); -- control signal fOR data memORy read/write
 end entity;
 
@@ -137,7 +136,7 @@ end process;
 
 --adding these instead of processes to test
 --with MemtoReg select MemtoReg_Output <= memory_out_mips when '1',
---													 ALUout when others;
+--                                                   ALUout when others;
 
 process(ALUSrc)
 begin
@@ -145,12 +144,12 @@ begin
     ALUSrc_Output <= sign_extend_output;
   else
     ALUSrc_Output <= Data_B;
-  end if;    
+  end if;
 end process;
 
 --adding these instead of processes to test
 --with ALUSrc select ALUSrc_Output <= sign_extend_output when '1',
---												Data_B when others;
+--                                              Data_B when others;
 
 process(RegDst)
 begin
@@ -163,7 +162,7 @@ end process;
 
 --adding these instead of processes to test
 --with RegDst select RegDst_Output <= instruction_mips(15 downto 11) when '1',
---												instruction_mips(20 downto 16) when others;
+--                instruction_mips(20 downto 16) when others;
 
 ------ Project 2 Signal Mapping (Step 4) ------
  
