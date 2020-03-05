@@ -41,3 +41,4 @@ tags
 # End of https://www.gitignore.io/api/vim,visualstudiocode
 
 docs/proj1/.vscode/settings.json
+docs/proj2/.vscode/settings.json

@@ -1,6 +1,14 @@
 Project 2 Report
 ````````````````
 
+.. csv-table::
+   :Header: "Names"
+
+   "Matthew Meadwell"
+   "R.J. Pereira"
+
+-----
+
 ------------
 Question 1:
 ------------
@@ -106,6 +114,48 @@ multiplexor signals in Step 3. (1 point)
 Response:
 ~~~~~~~~~
 
+We decided to use three different processes as multiplexors for our signal
+mapping. There are a few different methods to implement these multiplexors.
+One method is using with select statements similar to how our sign extension 
+is implemented. The code for all the processes can be seen below.
+
+.. code:: vhdl
+
+  ------ Project 2 Signal Mapping (Step 3) ------
+
+  -- first process is used as a multiplexor to select the MemtoReg_Output
+  -- selects between the data coming out of data memory or the output of the ALU
+  process(MemtoReg)
+  begin
+    if MemtoReg = '1' then
+      MemtoReg_Output <= memory_out_mips;
+    else
+      MemtoReg_Output <= ALUout;
+    end if;
+  end process;
+
+  -- second process is used as a multiplexor to select the ALUSrc_Output
+  -- to select between read register 2 or sign_extend_output
+  process(ALUSrc)
+  begin
+    if ALUSrc = '1' then
+      ALUSrc_Output <= sign_extend_output;
+    else
+      ALUSrc_Output <= Data_B;
+    end if;    
+  end process;
+
+  -- third process is used as a multiplexor to select the RegDst_Output for
+  -- input into the registers.
+  process(RegDst)
+  begin
+    if RegDst = '1' then
+      RegDst_Output <= instruction_mips(15 downto 11);
+    else
+      RegDst_Output <= instruction_mips(20 downto 16);
+    end if;
+  end process;
+
 -----
 
 ------------
@@ -152,6 +202,28 @@ and memory_out_mips. (2 points)
 
 Response:
 ~~~~~~~~~
+
+.. code:: vhdl
+
+  ------ Project 2 Signal Mapping (Step 4) ------
+ 
+  memory_address_mips <= ALUout;
+  memory_in_mips      <= Data_B;
+  memory_write_mips   <= MemWrite;
+
+  -- memort_out_mips is assigned to MemtoReg_Output by the multiplexor when 
+  -- memort_out_mips is selected it gets assigned to MemtoReg_Output 
+  -- which sends the data information to the registers.
+  process(MemtoReg)
+  begin
+    if MemtoReg = '1' then
+      MemtoReg_Output <= memory_out_mips;
+    else
+      MemtoReg_Output <= ALUout;
+    end if;
+  end process;
+
+-----
 
 -----
 
